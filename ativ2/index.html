@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material de Estudo - JavaScript</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        /* Cores gerais da página */
+        body {
+            background-color: #1a1a2e;
+            color: #cccccc;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Cabeçalho amarelo — cor do JavaScript */
+        .header {
+            background-color: #f7df1e;
+            padding: 20px 30px;
+	    min-height: 100px;
+	}
+
+	.header header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+	}
+
+	.header h1 {
+            color: #000000 !important;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+	}
+
+	.header p {
+            color: #000000 !important;
+            font-size: 15px;
+            margin: 0;
+	}
+
+	.titulo-js {
+            color: #000000 !important;
+            font-size: 32px !important;
+            font-weight: bold !important;
+            margin: 0 !important;
+            opacity: 1 !important;
+	}
+
+        /* Barra de navegação */
+        nav {
+            background-color: #111122;
+            padding: 12px 30px;
+        }
+
+        nav a {
+            color: #f7df1e;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Seções de conteúdo */
+        section {
+            padding: 40px 30px;
+            border-bottom: 1px solid #333;
+        }
+
+        h2, h3 {
+            color: #f7df1e;
+            border-left: 4px solid #f7df1e;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Caixa de código */
+        .caixa-codigo {
+            background-color: #0d0d1a;
+            border-left: 4px solid #f7df1e;
+            padding: 16px 20px;
+            margin: 16px 0;
+            color: #f7df1e;
+            font-family: Courier New, monospace;
+            font-size: 15px;
+        }
+
+        .comentario {
+            color: #6a9a6a;
+        }
+
+        /* Caixa de atenção */
+        .atencao {
+            background-color: #2a2a0e;
+            border: 1px solid #f7df1e;
+            padding: 14px 20px;
+            margin: 16px 0;
+            color: #f7df1e;
+            font-size: 15px;
+        }
+
+        /* Articles dos tópicos */
+        article {
+            background-color: #111122;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        article h5 {
+            color: #f7df1e;
+        }
+
+        /* Listas */
+        ul, ol {
+            color: #cccccc;
+            font-size: 16px;
+            line-height: 2;
+        }
+
+        /* Formulário */
+        .formulario-avaliacao {
+            background-color: #111122;
+            border: 1px solid #333;
+            padding: 30px;
+        }
+
+        .formulario-avaliacao label {
+            color: #ffffff;
+            font-weight: bold;
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+        }
+
+        .formulario-avaliacao input[type="text"],
+        .formulario-avaliacao select,
+        .formulario-avaliacao textarea {
+            background-color: #1a1a2e;
+            border: 1px solid #444;
+            color: #ffffff;
+            padding: 10px;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .formulario-avaliacao .opcao-radio {
+            color: #cccccc;
+            font-weight: normal;
+            display: block;
+            margin: 6px 0;
+        }
+
+        .btn-enviar {
+            background-color: #f7df1e;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 24px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-enviar:hover {
+            background-color: #e6cc00;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #111122;
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #f7df1e;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <div class="header">
+        <header>
+	    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="logo JavaScript" width="80"
+	    <h1 class="titulo-js">JavaScript</h1>
+            <p>Material de Estudo Digital sobre JavaScript do básico ao intermediário</p>
+        </header>
+    </div>
+
+    <!-- NAVEGAÇÃO -->
+    <nav>
+        <a href="#intro"      target="_self">Introdução</a>
+        <a href="#variaveis"  target="_self">Variáveis</a>
+        <a href="#condicionais" target="_self">Condicionais</a>
+        <a href="#funcoes"    target="_self">Funções</a>
+        <a href="#loops"      target="_self">Loops</a>
+        <a href="#avaliacao"  target="_self">Avaliação</a>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div id="main">
+
+        <!-- INTRODUÇÃO -->
+        <section id="intro">
+            <h2>O que é JavaScript?</h2>
+            <p>
+                JavaScript é uma linguagem de programação usada para tornar páginas web interativas.
+                Enquanto o <b>HTML</b> estrutura a página e o <b>CSS</b> cuida da aparência,
+                o JavaScript cuida do comportamento</mark> — o que acontece quando o usuário
+                clica em um botão, preenche um formulário, etc.
+            </p>
+            <p>
+                Ele roda diretamente no navegador, <i>sem precisar instalar nada</i>.
+                É uma das linguagens <b>mais usadas no mundo</b>.
+            </p>
+            <div class="atencao">
+                💡 <strong>Curiosidade:</strong> JavaScript <del>é a mesma coisa que Java</del> — não é!
+                Os nomes são parecidos, mas são linguagens completamente diferentes.
+            </div>
+        </section>
+
+        <!-- VARIÁVEIS -->
+        <section id="variaveis">
+            <h2>Variáveis e Tipos de Dados</h2>
+            <p>Variáveis são como caixinhas que guardam informações. Existem três formas de declarar:</p>
+
+            <ul>
+                <li><b>var</b> — forma antiga, evite usar</li>
+                <li><b>let</b> — use quando o valor pode mudar</li>
+                <li><b>const</b> — use quando o valor não vai mudar</li>
+            </ul>
+
+            <div class="caixa-codigo">
+                <span class="comentario">// Declarando variáveis</span><br>
+                let nome = "Anthony";<br>
+                let idade = 22;<br>
+                const pais = "Brasil";<br>
+                <br>
+                <span class="comentario">// Mostrando no console</span><br>
+                console.log(nome);  <span class="comentario">// Anthony</span><br>
+                console.log(idade); <span class="comentario">// 22</span>
+            </div>
+
+            <p>Os principais tipos de dados são:</p>
+
+            <article>
+                <h5>String — texto</h5>
+                <p>Qualquer texto entre aspas: <code style="color:#f7df1e;">"Olá, mundo!"</code></p>
+            </article>
+
+            <article>
+                <h5>Number — número</h5>
+                <p>Números inteiros ou decimais: <code style="color:#f7df1e;">42</code> ou <code style="color:#f7df1e;">3.14</code></p>
+            </article>
+
+            <article>
+                <h5>Boolean — verdadeiro ou falso</h5>
+                <p>Só pode ser <code style="color:#f7df1e;">true</code> ou <code style="color:#f7df1e;">false</code></p>
+            </article>
+        </section>
+
+        <!-- CONDICIONAIS -->
+        <section id="condicionais">
+            <h2>Condicionais — if / else</h2>
+            <p>
+                Condicionais permitem que o código tome <b>decisões</b>.
+                Se uma condição for verdadeira, faz uma coisa — <i>senão</i>, faz outra.
+            </p>
+
+            <div class="caixa-codigo">
+                let idade = 18;<br>
+                <br>
+                if (idade >= 18) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="comentario">"Maior de idade"</span>);<br>
+                } else {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="comentario">"Menor de idade"</span>);<br>
+                }
+            </div>
+
+            <p>
+                No exemplo acima, como idade é 18, o console vai mostrar:
+                Maior de idade.
+            </p>
+        </section>
+
+        <!-- FUNÇÕES -->
+        <section id="funcoes">
+            <h2>Funções</h2>
+            <p>
+                Funções são blocos de código que você pode <b>reutilizar</b>.
+                Você define uma vez e chama <i>quantas vezes quiser</i>.
+            </p>
+
+            <div class="caixa-codigo">
+                <span class="comentario">// Definindo a função</span><br>
+                function saudacao(nome) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log("Olá, " + nome + "!");<br>
+                }<br>
+                <br>
+                <span class="comentario">// Chamando a função</span><br>
+                saudacao("Ana");   <span class="comentario">// Olá, Ana!</span><br>
+                saudacao("Pedro"); <span class="comentario">// Olá, Pedro!</span>
+            </div>
+        </section>
+
+        < LOOPS -->
+        <section id="loops">
+            <h2>Loops — Repetição</h2>
+            <p>
+                Loops servem para <b>repetir</b> um bloco de código várias vezes.
+                O mais comum é o for.
+            </p>
+
+            <div class="caixa-codigo">
+                <span class="comentario">// Conta de 1 até 5</span><br>
+                for (let i = 1; i &lt;= 5; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(i);<br>
+                }<br>
+                <br>
+                <span class="comentario">// Resultado: 1, 2, 3, 4, 5</span>
+            </div>
+
+            <p>O loop for tem três partes:</p>
+
+            <ol>
+                <li><b>let i = 1</b> — começa com i valendo 1</li>
+                <li><b>i &lt;= 5</b> — continua enquanto i for menor ou igual a 5</li>
+                <li><b>i++</b> — aumenta i em 1 a cada repetição</li>
+            </ol>
+        </section>
+
+        <!-- AVALIAÇÃO -->
+        <section id="avaliacao">
+            <h2>Avaliação do Usuário</h2>
+
+            <div class="formulario-avaliacao">
+                <form>
+                    <fieldset>
+                        <legend style="color:#f7df1e; font-size:18px;">Responda as questões abaixo</legend>
+
+                        <!-- Nome -->
+                        <label>Nome:</label>
+                        <input type="text" placeholder="Digite seu nome">
+
+                        <!-- Nível -->
+                        <label>Nível de conhecimento antes do conteúdo:</label>
+                        <select>
+                            <option>Iniciante</option>
+                            <option>Intermediário</option>
+                            <option>Avançado</option>
+                        </select>
+
+                        <!-- Questão 1 - múltipla escolha -->
+                        <label>1) Qual palavra-chave usamos para uma variável que NÃO vai mudar?</label>
+                        <label class="opcao-radio"><input type="radio" name="q1"> var</label>
+                        <label class="opcao-radio"><input type="radio" name="q1"> let</label>
+                        <label class="opcao-radio"><input type="radio" name="q1"> const</label>
+                        <label class="opcao-radio"><input type="radio" name="q1"> function</label>
+
+                        <!-- Questão 2 - verdadeiro ou falso -->
+                        <label>2) (V ou F) — JavaScript e Java são a mesma linguagem.</label>
+                        <label class="opcao-radio"><input type="radio" name="q2"> Verdadeiro</label>
+                        <label class="opcao-radio"><input type="radio" name="q2"> Falso</label>
+
+                        <!-- Questão 3 - múltipla escolha -->
+                        <label>3) O que o console.log() faz?</label>
+                        <label class="opcao-radio"><input type="radio" name="q3"> Cria uma variável</label>
+                        <label class="opcao-radio"><input type="radio" name="q3"> Imprime uma mensagem no console</label>
+                        <label class="opcao-radio"><input type="radio" name="q3"> Apaga o código</label>
+                        <label class="opcao-radio"><input type="radio" name="q3"> Declara uma função</label>
+
+                        <!-- Questão 4 - verdadeiro ou falso -->
+                        <label>4) (V ou F) — Um loop for serve para repetir um bloco de código.</label>
+                        <label class="opcao-radio"><input type="radio" name="q4"> Verdadeiro</label>
+                        <label class="opcao-radio"><input type="radio" name="q4"> Falso</label>
+
+                        <!-- Questão 5 - múltipla escolha -->
+                        <label>5) O que é uma função em JavaScript?</label>
+                        <label class="opcao-radio"><input type="radio" name="q5"> Um tipo de variável</label>
+                        <label class="opcao-radio"><input type="radio" name="q5"> Um bloco de código reutilizável</label>
+                        <label class="opcao-radio"><input type="radio" name="q5"> Um comando para parar o código</label>
+                        <label class="opcao-radio"><input type="radio" name="q5"> Um tipo de dado</label>
+
+                        <!-- Comentários -->
+                        <label>Comentários:</label>
+                        <textarea rows="4" placeholder="Escreva sua opinião sobre o conteúdo..."></textarea>
+
+                        <button type="submit" class="btn-enviar">Enviar Avaliação</button>
+
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>Material de Estudo Digital — JavaScript</p>
+        <p>Feito com <b>HTML</b>, <b>CSS</b> e <b>Bootstrap</b></p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
