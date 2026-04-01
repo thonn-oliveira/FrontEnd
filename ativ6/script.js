@@ -33,12 +33,12 @@ function init_cont() {
 }
 
 function alimentar() {
-    bicho.src = estados.clicado; // ✅ "src" correto, estado "clicado" existe
+    bicho.src = estados.clicado; 
     contador = 0;
     console.log("Comendo");
 
-    if (time_Click) clearTimeout(time_Click); // ✅ clearTimeout com a variável correta
-    if (time_Out) clearTimeout(time_Out);     // ✅ limpa timeout anterior
+    if (time_Click) clearTimeout(time_Click); 
+    if (time_Out) clearTimeout(time_Out);    
 
     time_Click = setTimeout(() => {
         bicho.src = estados.alimentado;
