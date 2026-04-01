@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica', sans-serif;
+}
+body {
+    background: linear-gradient(180deg, #7cfc00 0%, #228b22 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.game-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 5px solid #fff;
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 350px;
+}
+.game-title {
+    color: white;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+.stage {
+    background: #e0f7fa;
+    border-radius: 20px;
+    padding: 20px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 3px solid #4db6ac;
+}
+#bicho {
+    width: 200px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: floating 3s ease-in-out infinite;
+}
+.ui-controls {
+    display: flex;
+    justify-content: center;
+}
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+#btn-alimentar {
+    width: 70px;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,0.3));
+}
+#btn-alimentar:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+#btn-alimentar:active {
+    transform: scale(0.9);
+}
+.btn-wrapper span {
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-shadow: 1px 1px #000;
+}
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
