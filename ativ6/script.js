@@ -7,6 +7,7 @@ const estados = {
     alimentado: "bichinho_feliz.png",
     fome30: "bichinho_bravo.png",
     fome60: "bichinho_morto.png",
+    gostoso: "imagem_gostosinha.png",
 }
 
 let contador = 0;
@@ -50,3 +51,15 @@ function alimentar() {
 }
 
 init_cont();
+
+function mostrarGostoso(){
+    document.getElementById("bicho").src = estados.gostoso;
+}
+
+window.onload = () => {
+    const botao = document.getElementById("btn-alimentar");
+
+    botao.addEventListener("dblclick", () => {
+        mostrarGostoso();
+    });
+};
