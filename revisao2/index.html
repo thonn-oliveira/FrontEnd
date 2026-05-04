@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Football</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Formulário de Football</h1>
+        <!-- Formulario -->
+        <form id="football-form" method="POST" action="/submit-football-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name"><strong>Nome:</strong></label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><strong>Email:</strong></label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="team">Equipe:</label>
+                <select class="form-select" id="team" name="team" required>
+                    <option value="" disabled selected>Selecione a equipe</option>
+                    <option value="Flamengo">Flamengo</option>
+                    <option value="Palmeiras">Palmeiras</option>
+                    <option value="São Paulo">São Paulo</option>
+                    <option value="Athletico-PR">Athletico-PR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="goals"><strong>Gols:</strong></label>
+                <input type="number" min="0" max="100" step="any" class="form-control" id="goals" name="goals" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <!-- Mensagem de sucesso -->
+        <div id="success-message" class="alert alert-success text-center mt-5" style="display: none;">
+            Sucesso! Sua mensagem foi enviada.
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        document.getElementById('football-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const team = document.getElementById('team').value;
+            const goals = document.getElementById('goals').value;
+            // Simulando envio para uma API
+            fetch('/submit-football-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name, email, team, goals
+                })
+            }).then(response => response.text())
+              .then(data => {
+                  document.getElementById('success-message').style.display = "block";
+                  setTimeout(() => {
+                      document.getElementById('success-message').style.display = "none";
+                  }, 3000);
+              });
+        });
+    </script>
+</body>
+</html>

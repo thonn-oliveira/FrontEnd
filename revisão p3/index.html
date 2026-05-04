@@ -1,0 +1,45 @@
+<style>
+    .topo {
+        background: #ffc107; /* Amarelo */
+        text-align: center;
+        font-size: 43px;
+        font-weight: bold; /* No seu código estava 'blod', corrija para 'bold' senão não funciona! */
+        border: 2px solid #110c8a;
+    }
+    .painel {
+        background: #ddd; /* Cinza claro */
+        padding: 10px;
+        border: 2px solid #110c8a;
+    }
+    .total {
+        font-size: 43px;
+        font-weight: bold; /* Correção de 'blod' para 'bold' */
+        text-align: right;
+    }
+</style>
+
+<body class="bg-primary bg-gradient"> <div class="container mt-3"> <div class="topo"> CAIXA LIVRE </div>
+
+        <div class="row mt-2"> <div class="col-md-7">
+                <h3 class="text-white">Sua Compra</h3>
+                <ul id="lista" class="list-group"> </ul>
+            </div>
+
+            <div class="col-md-5">
+                <div class="painel total"> TOTAL: R$ <span id="total">0,00</span> </div>
+
+                <div class="painel"> 
+                    <label> CÓDIGO DE BARRAS </label>
+                    <input type="text" id="cod" class="form-control">
+                </div>
+
+                <div class="painel"> 
+                    <label> QUANTIDADE </label>
+                    <input type="number" id="qtd" class="form-control" value="1">
+                </div>
+
+                <button class="btn btn-success w-100" onclick="addProduto()"> Adicionar Produto </button>
+            </div>
+        </div>
+    </div>
+</body>
