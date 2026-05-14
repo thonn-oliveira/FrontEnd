@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ex 03 - Média Escolar</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 60px auto; padding: 0 20px; }
+    h1 { font-size: 1.3rem; margin-bottom: 20px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    input { width: 100%; padding: 8px; font-size: 1rem; box-sizing: border-box; margin-bottom: 12px; }
+    button { padding: 10px 20px; font-size: 1rem; cursor: pointer; }
+    #resultado { margin-top: 15px; padding: 12px; border-radius: 5px; font-weight: bold; display: none; }
+    .aprovado  { background: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+    .exame     { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .reprovado { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+  </style>
+</head>
+<body>
+
+  <h1>🎓 Exercício 03 — Média Escolar</h1>
+
+  <label for="nome">Nome do Aluno:</label>
+  <input type="text" id="nome" placeholder="Ex: João Silva">
+
+  <label for="n1">Nota 1:</label>
+  <input type="number" id="n1" step="0.1" min="0" max="10" placeholder="0.0">
+
+  <label for="n2">Nota 2:</label>
+  <input type="number" id="n2" step="0.1" min="0" max="10" placeholder="0.0">
+
+  <label for="n3">Nota 3:</label>
+  <input type="number" id="n3" step="0.1" min="0" max="10" placeholder="0.0">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcular() {
+      const nome  = document.getElementById('nome').value.trim() || 'Aluno';
+      const n1    = Number(document.getElementById('n1').value);
+      const n2    = Number(document.getElementById('n2').value);
+      const n3    = Number(document.getElementById('n3').value);
+      const media = (n1 + n2 + n3) / 3;
+      const res   = document.getElementById('resultado');
+
+      res.style.display = 'block';
+
+      if (media >= 7.0) {
+        res.className   = 'aprovado';
+        res.textContent = `✅ ${nome} — APROVADO(A) | Média: ${media.toFixed(2)}`;
+      } else if (media >= 4.0) {
+        const falta     = (10 - media).toFixed(2);
+        res.className   = 'exame';
+        res.textContent = `📋 ${nome} — EXAME FINAL | Média: ${media.toFixed(2)} | Faltam ${falta} pontos para 10`;
+      } else {
+        res.className   = 'reprovado';
+        res.textContent = `❌ ${nome} — REPROVADO(A) | Média: ${media.toFixed(2)}`;
+      }
+    }
+  </script>
+
+</body>
+</html>
