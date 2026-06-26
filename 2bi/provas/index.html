@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provas - Questoes</title>
+  <style>
+    :root {
+      --bg: #f3f6f8;
+      --text: #17212b;
+      --muted: #5d6b78;
+      --card: #ffffff;
+      --line: #d9e1e8;
+      --accent: #176b87;
+      --accent-dark: #0f4c5c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      width: min(1050px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .dias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.25rem;
+    }
+
+    .links {
+      display: grid;
+      gap: 10px;
+    }
+
+    a {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 700;
+      background: #f9fbfc;
+    }
+
+    a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #eef7f9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Provas</h1>
+      <p>Acesse as questoes separadas por dia.</p>
+    </header>
+
+    <div class="dias">
+      <section>
+        <h2>Dia 1</h2>
+        <div class="links">
+          <a href="Dia%201/questao_01/">Questao 01</a>
+          <a href="Dia%201/questao_02/">Questao 02</a>
+          <a href="Dia%201/questao_03/">Questao 03</a>
+          <a href="Dia%201/questao_04/">Questao 04</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Dia 2</h2>
+        <div class="links">
+          <a href="Dia%202/questao_01/">Questao 01</a>
+          <a href="Dia%202/questao_02/">Questao 02</a>
+          <a href="Dia%202/questao_03/">Questao 03</a>
+          <a href="Dia%202/questao_04/">Questao 04</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Dia 3</h2>
+        <div class="links">
+          <a href="Dia%203/questao_01/">Questao 01</a>
+          <a href="Dia%203/questao_02/">Questao 02</a>
+          <a href="Dia%203/questao_03/">Questao 03</a>
+          <a href="Dia%203/questao_04/">Questao 04</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

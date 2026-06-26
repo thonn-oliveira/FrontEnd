@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 04 - Prova Dia 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body, html { height: 100%; margin: 0; }
+        .bg-copa { background-image: url('../img/FIFA-World-Cup-26.jpg'); background-size: cover; background-position: center; background-attachment: fixed; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .card { backdrop-filter: blur(5px); background-color: rgba(255, 255, 255, 0.9); border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .voltar { position: absolute; top: 20px; left: 20px; color: #fff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <a class="voltar" href="../index.html">← Voltar ao índice</a>
+    <div class="bg-copa">
+        <div class="d-flex flex-column align-items-center">
+            <div class="card" style="width: 22rem;" aria-hidden="true">
+                <img src="../img/img_.svg" class="card-img-top" alt="Placeholder Copa">
+                <div class="card-body">
+                    <h5 id="Nome" class="card-title placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                        <span id="Rank" class="badge text-bg-secondary">-</span>
+                    </h5>
+                    <p class="card-text placeholder-glow">
+                        <span id="Data_Nas" class="placeholder col-4"></span><br>
+                        <span id="Altura" class="placeholder col-4"></span><br>
+                        <span id="Posição" class="placeholder col-6"></span><br>
+                    </p>
+                </div>
+            </div>
+            <a href="#" onclick="revelar(); return false;" tabindex="-1" class="btn btn-primary" style="margin: 10px; padding: 10px;">
+                Revelar
+            </a>
+        </div>
+    </div>
+    <script>
+        function revelar() {
+            document.querySelector("img").src = "../img/_vinicius_junior.png";
+
+            const nomeEl = document.getElementById("Nome");
+            nomeEl.firstChild.textContent = "Vinícius José Paixão de Oliveira Júnior ";
+            nomeEl.classList.remove("placeholder-glow");
+
+            const rank = document.getElementById("Rank");
+            rank.textContent = "9,5";
+            rank.classList.remove("placeholder");
+            rank.classList.add("card-text");
+
+            const dados = {
+                "Data_Nas": "12/07/2000 (25 anos)",
+                "Altura": "1,76 m",
+                "Posição": "Ponta-esquerda / Atacante"
+            };
+
+            for (const [id, valor] of Object.entries(dados)) {
+                const el = document.getElementById(id);
+                el.textContent = valor;
+                el.classList.remove("placeholder");
+                el.classList.add("card-text");
+            }
+
+            document.querySelector(".placeholder-glow")?.classList.remove("placeholder-glow");
+        }
+    </script>
+</body>
+</html>

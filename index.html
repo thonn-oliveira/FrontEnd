@@ -3,138 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Projetos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Anthony Oliveira - Projetos FrontEnd</title>
     <style>
+        :root {
+            --bg: #eef3f7;
+            --panel: #ffffff;
+            --text: #17202a;
+            --muted: #5f6f7c;
+            --line: #d9e3ea;
+            --primary: #176b87;
+            --primary-dark: #0f4c5c;
+            --accent: #d95f43;
+            --soft-accent: #fff2ed;
+            --soft-primary: #edf8fb;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1e1e2f, #2b5876);
-            color: white;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0;
+        }
+
+        header {
+            display: grid;
+            gap: 14px;
+            padding: 28px;
+            margin-bottom: 22px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .eyebrow {
+            width: fit-content;
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: var(--soft-primary);
+            color: var(--primary-dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         h1 {
-            margin-bottom: 40px;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1;
+            letter-spacing: 0;
         }
 
-        .container {
+        .intro {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .quick-links {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 18px;
-            width: 100%;
-            max-width: 860px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .quick-links a {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: var(--primary-dark);
+            background: #f9fbfc;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 30px 0 14px;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            letter-spacing: 0;
+        }
+
+        .section-title span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
         }
 
         .card {
-            background: #ffffff;
-            color: #1e1e2f;
-            border: 2px solid #2b5876;
-            border-radius: 12px;
-            padding: 24px;
-            text-align: left;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            cursor: pointer;
+            min-height: 176px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+            color: var(--text);
             text-decoration: none;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
-            border-color: #ff6f61;
+        .card:hover,
+        .card:focus-visible {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 24px rgba(23, 32, 42, 0.12);
+            outline: none;
         }
 
-        .card h2 {
-            margin-bottom: 10px;
+        .card-top {
+            display: grid;
+            gap: 10px;
+        }
+
+        .badge {
+            width: fit-content;
+            padding: 5px 8px;
+            border-radius: 6px;
+            background: var(--soft-accent);
+            color: var(--accent);
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            letter-spacing: 0;
         }
 
         .card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .open {
+            color: var(--primary-dark);
+            font-weight: 700;
             font-size: 0.9rem;
-            opacity: 0.8;
         }
 
         footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.7;
+            margin-top: 34px;
+            padding: 22px 0 8px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                width: min(100% - 20px, 1120px);
+                padding: 18px 0;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            .section-title {
+                display: block;
+            }
+
+            .section-title span {
+                display: block;
+                margin-top: 6px;
+            }
         }
     </style>
 </head>
 <body>
+    <main class="page">
+        <header>
+            <span class="eyebrow">FrontEnd</span>
+            <h1>Meus Projetos</h1>
+            <p class="intro">
+                Lista organizada das atividades, jogos e provas desenvolvidas durante o curso.
+                Os links abaixo funcionam no GitHub Pages e tambem abrindo os arquivos localmente.
+            </p>
+            <nav class="quick-links" aria-label="Atalhos principais">
+                <a href="2bi/ativ_jogo_2605/">Jogo Termo</a>
+                <a href="2bi/provas/">Provas 2 Bimestre</a>
+                <a href="ativ7/">Caixa Livre</a>
+            </nav>
+        </header>
 
-    <h1>Meus Projetos</h1>
+        <section aria-labelledby="atividades-title">
+            <div class="section-title">
+                <h2 id="atividades-title">Atividades</h2>
+                <span>Primeiros exercicios e praticas de interface</span>
+            </div>
 
-    <div class="container">
+            <div class="grid">
+                <a href="ativ1/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 1</span>
+                        <h3>Colecionador</h3>
+                        <p>Projeto com cards, organizacao visual e filtros.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ1/" class="card">
-            <h2>Atividade 1 - Colecionador</h2>
-            <p>Projeto local de UI com cards e filtros.</p>
-        </a>
+                <a href="ativ2/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 2</span>
+                        <h3>Aprendizagem</h3>
+                        <p>Tutorial interativo com fundamentos de JavaScript.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ2/" class="card">
-            <h2>Atividade 2 - Aprendizagem</h2>
-            <p>Tutorial interativo de fundamentos em JavaScript.</p>
-        </a>
+                <a href="ativ3/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 3</span>
+                        <h3>CSS Avancado</h3>
+                        <p>Pratica de responsividade, estilos e animacoes.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ3/" class="card">
-            <h2>Atividade 3 - CSS Avançado</h2>
-            <p>Demonstração de responsividade e animações.</p>
-        </a>
+                <a href="ativ4/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 4</span>
+                        <h3>DaisyUI</h3>
+                        <p>Uso de componentes prontos para montar interfaces.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ4/" class="card">
-            <h2>Atividade 4 - Framework DaisyUI</h2>
-            <p>Demonstração de responsividade e animações usando componentes DaisyUI.</p>
-        </a>
+                <a href="ativ5/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 5</span>
+                        <h3>Bootstrap</h3>
+                        <p>Experimentos com layout, componentes e responsividade.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ5/" class="card">
-            <h2>Atividade 5 - Framework Bootstrap</h2>
-            <p>Demonstração de responsividade e animações usando componentes Bootstrap.</p>
-        </a>
+                <a href="ativ6/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 6</span>
+                        <h3>Virtual Pet</h3>
+                        <p>Atividade com HTML, CSS e interacoes em JavaScript.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ6/" class="card">
-            <h2>Atividade 6 - Atividade Virtual Pet</h2>
-            <p>Demonstração de js html e css.</p>
-        </a>
+                <a href="ativ7/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Atividade 7</span>
+                        <h3>Caixa Livre</h3>
+                        <p>Aplicacao de compra com calculo e manipulacao de itens.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/ativ7/" class="card">
-            <h2>Atividade 7 - Caixa Livre</h2>
-            <p>Demonstração e aplicação de js html e css.</p>
-        </a>
+                <a href="2bi/Lista_da_semana/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Lista</span>
+                        <h3>Lista da Semana</h3>
+                        <p>Lista com exercicios organizados em quatro partes.</p>
+                    </div>
+                    <span class="open">Abrir projeto</span>
+                </a>
+            </div>
+        </section>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/2bi/provas/Dia 1/" class="card">
-            <h2>2 Bimestre Atividade 8 - Prova 1</h2>
-            <p>Correção da prova do dia 1 (js html e css).</p>
-        </a>
+        <section aria-labelledby="segundo-bimestre-title">
+            <div class="section-title">
+                <h2 id="segundo-bimestre-title">2 Bimestre</h2>
+                <span>Jogo e provas organizadas por dia</span>
+            </div>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/2bi/provas/Dia 2/" class="card">
-            <h2>2 Bimestre Atividade 8.1 - Prova 2</h2>
-            <p>Correção da prova do dia 2 (js html e css).</p>
-        </a>
+            <div class="grid">
+                <a href="2bi/ativ_jogo_2605/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Jogo</span>
+                        <h3>Termo</h3>
+                        <p>Jogo funcional de adivinhar a palavra com tabuleiro e teclado virtual.</p>
+                    </div>
+                    <span class="open">Abrir jogo</span>
+                </a>
 
-        <a href="https://thonn-oliveira.github.io/FrontEnd/2bi/provas/Dia 3/" class="card">
-            <h2>2 Bimestre Atividade 8.2 - Prova 3</h2>
-            <p>Correção da prova do dia 3 (js html e css).</p>
-        </a>
+                <a href="2bi/provas/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Provas</span>
+                        <h3>Indice das Provas</h3>
+                        <p>Acesso central para todas as questoes separadas por dia.</p>
+                    </div>
+                    <span class="open">Abrir indice</span>
+                </a>
 
-    </div>
+                <a href="2bi/provas/Dia%201/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Dia 1</span>
+                        <h3>Prova 1</h3>
+                        <p>Questoes 01 a 04 organizadas em pastas separadas.</p>
+                    </div>
+                    <span class="open">Abrir prova</span>
+                </a>
+
+                <a href="2bi/provas/Dia%202/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Dia 2</span>
+                        <h3>Prova 2</h3>
+                        <p>Questoes separadas e com dependencias copiadas para cada pasta.</p>
+                    </div>
+                    <span class="open">Abrir prova</span>
+                </a>
+
+                <a href="2bi/provas/Dia%203/" class="card">
+                    <div class="card-top">
+                        <span class="badge">Dia 3</span>
+                        <h3>Prova 3</h3>
+                        <p>Questoes organizadas com HTML, CSS, JavaScript e imagens.</p>
+                    </div>
+                    <span class="open">Abrir prova</span>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        © 2026 - Anthony Oliveira | Desenvolvido por você
+        2026 - Anthony Oliveira | Projetos de FrontEnd
     </footer>
-
 </body>
 </html>

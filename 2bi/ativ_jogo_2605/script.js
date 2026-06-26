@@ -1,77 +1,215 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+const solution = "TERMO";
+const maxAttempts = 6;
+const wordSize = 5;
 
-const SOLUTION = "TERMO"; // A palavra do dia
+const words = ["TERMO", "LIVRO", "CAMPO", "JOGOS", "FESTA", "MUNDO", "PLACA", "FORCA"];
 
-function App() {
-  const [guesses, setGuesses] = useState([]); // Palpites finalizados
-  const [currentGuess, setCurrentGuess] = useState(""); // O que está sendo digitado
-  const [gameOver, setGameOver] = useState(false);
+let currentRow = 0;
+let currentCol = 0;
+let currentGuess = "";
+let gameOver = false;
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (gameOver) return;
+const board = document.getElementById("board");
+const keyboard = document.getElementById("keyboard");
+const message = document.getElementById("message");
+const restartButton = document.getElementById("restart");
 
-      if (e.key === 'Enter') {
-        if (currentGuess.length !== 5) return;
-        setGuesses([...guesses, currentGuess.toUpperCase()]);
-        setCurrentGuess("");
-        if (currentGuess.toUpperCase() === SOLUTION) setGameOver(true);
-      }
+const keys = [
+  ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+  ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+  ["Enter", "Z", "X", "C", "V", "B", "N", "M", "Backspace"],
+];
 
-      if (e.key === 'Backspace') {
-        setCurrentGuess(prev => prev.slice(0, -1));
-        return;
-      }
+function createBoard() {
+  board.innerHTML = "";
 
-      if (/^[a-z]$/i.test(e.key) && currentGuess.length < 5) {
-        setCurrentGuess(prev => prev + e.key.toUpperCase());
-      }
-    };
+  for (let row = 0; row < maxAttempts; row++) {
+    const rowElement = document.createElement("div");
+    rowElement.className = "row";
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentGuess, guesses, gameOver]);
-
-  return (
-    <div className="game-container">
-      <h1>Termo Clone</h1>
-      <div className="grid">
-        {/* Renderiza palpites antigos */}
-        {guesses.map((guess, i) => (
-          <Row key={i} guess={guess} isFinal={true} />
-        ))}
-        
-        {/* Linha atual sendo digitada */}
-        {!gameOver && guesses.length < 6 && (
-          <Row guess={currentGuess} isFinal={false} />
-        )}
-
-        {/* Linhas vazias restantes */}
-        {[...Array(Math.max(0, 5 - guesses.length))].map((_, i) => (
-          <Row key={i} guess="" isFinal={false} />
-        ))}
-      </div>
-      {gameOver && <h2>Parabéns! 🎉</h2>}
-    </div>
-  );
-}
-
-function Row({ guess, isFinal }) {
-  const tiles = [];
-  for (let i = 0; i < 5; i++) {
-    const char = guess[i] || "";
-    let status = "";
-
-    if (isFinal) {
-      if (char === SOLUTION[i]) status = "correct";
-      else if (SOLUTION.includes(char)) status = "present";
-      else status = "absent";
+    for (let col = 0; col < wordSize; col++) {
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      tile.setAttribute("aria-label", `Linha ${row + 1}, letra ${col + 1}`);
+      rowElement.appendChild(tile);
     }
 
-    tiles.push(<div key={i} className={`tile ${status}`}>{char}</div>);
+    board.appendChild(rowElement);
   }
-  return <div className="row">{tiles}</div>;
 }
 
-export default App;
+function createKeyboard() {
+  keyboard.innerHTML = "";
+
+  keys.forEach((row) => {
+    const rowElement = document.createElement("div");
+    rowElement.className = "keyboard-row";
+
+    row.forEach((key) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = key === "Backspace" ? "Apagar" : key;
+      button.dataset.key = key;
+      button.className = key.length > 1 ? "key key-wide" : "key";
+      button.addEventListener("click", () => handleKey(key));
+      rowElement.appendChild(button);
+    });
+
+    keyboard.appendChild(rowElement);
+  });
+}
+
+function handleKey(key) {
+  if (gameOver) return;
+
+  if (key === "Enter") {
+    submitGuess();
+    return;
+  }
+
+  if (key === "Backspace") {
+    removeLetter();
+    return;
+  }
+
+  if (/^[A-Z]$/.test(key)) {
+    addLetter(key);
+  }
+}
+
+function addLetter(letter) {
+  if (currentCol >= wordSize) return;
+
+  currentGuess += letter;
+  getTile(currentRow, currentCol).textContent = letter;
+  getTile(currentRow, currentCol).classList.add("filled");
+  currentCol++;
+  setMessage("");
+}
+
+function removeLetter() {
+  if (currentCol <= 0) return;
+
+  currentCol--;
+  currentGuess = currentGuess.slice(0, -1);
+  const tile = getTile(currentRow, currentCol);
+  tile.textContent = "";
+  tile.className = "tile";
+}
+
+function submitGuess() {
+  if (currentGuess.length < wordSize) {
+    setMessage("Digite uma palavra com 5 letras.");
+    shakeRow();
+    return;
+  }
+
+  if (!words.includes(currentGuess)) {
+    setMessage("Palavra fora da lista.");
+    shakeRow();
+    return;
+  }
+
+  revealGuess();
+
+  if (currentGuess === solution) {
+    gameOver = true;
+    setMessage("Parabens, voce acertou!");
+    restartButton.hidden = false;
+    return;
+  }
+
+  currentRow++;
+  currentCol = 0;
+  currentGuess = "";
+
+  if (currentRow === maxAttempts) {
+    gameOver = true;
+    setMessage(`Fim de jogo. A palavra era ${solution}.`);
+    restartButton.hidden = false;
+  }
+}
+
+function revealGuess() {
+  const solutionLetters = solution.split("");
+  const guessLetters = currentGuess.split("");
+  const statuses = Array(wordSize).fill("absent");
+
+  guessLetters.forEach((letter, index) => {
+    if (letter === solutionLetters[index]) {
+      statuses[index] = "correct";
+      solutionLetters[index] = "";
+      guessLetters[index] = "";
+    }
+  });
+
+  guessLetters.forEach((letter, index) => {
+    if (!letter) return;
+
+    const foundIndex = solutionLetters.indexOf(letter);
+    if (foundIndex !== -1) {
+      statuses[index] = "present";
+      solutionLetters[foundIndex] = "";
+    }
+  });
+
+  statuses.forEach((status, index) => {
+    const tile = getTile(currentRow, index);
+    const letter = currentGuess[index];
+    tile.classList.add(status);
+    updateKeyboard(letter, status);
+  });
+}
+
+function updateKeyboard(letter, status) {
+  const key = keyboard.querySelector(`[data-key="${letter}"]`);
+  if (!key) return;
+
+  const priority = { absent: 1, present: 2, correct: 3 };
+  const currentStatus = key.dataset.status;
+
+  if (!currentStatus || priority[status] > priority[currentStatus]) {
+    key.dataset.status = status;
+    key.classList.remove("absent", "present", "correct");
+    key.classList.add(status);
+  }
+}
+
+function getTile(row, col) {
+  return board.children[row].children[col];
+}
+
+function setMessage(text) {
+  message.textContent = text;
+}
+
+function shakeRow() {
+  const row = board.children[currentRow];
+  row.classList.remove("shake");
+  void row.offsetWidth;
+  row.classList.add("shake");
+}
+
+function restartGame() {
+  currentRow = 0;
+  currentCol = 0;
+  currentGuess = "";
+  gameOver = false;
+  restartButton.hidden = true;
+  setMessage("");
+  createBoard();
+  createKeyboard();
+}
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key === "Backspace" || event.key === "Enter"
+    ? event.key
+    : event.key.toUpperCase();
+
+  handleKey(key);
+});
+
+restartButton.addEventListener("click", restartGame);
+
+createBoard();
+createKeyboard();

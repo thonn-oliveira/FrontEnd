@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 8</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3f7;
+            color: #17202a;
+        }
+
+        main {
+            width: min(860px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0;
+        }
+
+        header {
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            letter-spacing: 0;
+        }
+
+        p {
+            color: #5f6f7c;
+            line-height: 1.6;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        a {
+            display: block;
+            min-height: 112px;
+            padding: 18px;
+            border: 1px solid #d9e3ea;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #17202a;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus-visible {
+            border-color: #176b87;
+            outline: none;
+        }
+
+        strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #0f4c5c;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Lista da semana</h1>
+            <p>Escolha um exercicio para abrir.</p>
+        </header>
+
+        <section class="links" aria-label="Exercicios da atividade 8">
+            <a href="exe1/">
+                <strong>Exercicio 1</strong>
+                Abrir primeira parte da atividade.
+            </a>
+            <a href="exe2/">
+                <strong>Exercicio 2</strong>
+                Abrir segunda parte da atividade.
+            </a>
+            <a href="exe3/">
+                <strong>Exercicio 3</strong>
+                Abrir terceira parte da atividade.
+            </a>
+            <a href="exe4/">
+                <strong>Exercicio 4</strong>
+                Abrir quarta parte da atividade.
+            </a>
+        </section>
+    </main>
+</body>
+</html>
